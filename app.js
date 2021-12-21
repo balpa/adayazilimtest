@@ -33,10 +33,12 @@ app.post('/reservation', (req, res) => {
             var maxPeopleForEachVagon = vagonlar[i].Kapasite*0.7 - vagonlar[i].DoluKoltukAdet
             maxPeopleForEachVagon > 0 ? total += maxPeopleForEachVagon : total += 0
             if (maxPeopleForEachVagon > 0 && tempKisiSayisi < maxPeopleForEachVagon){
+                cevap.RezervasyonYapilabilir = true
                 cevap.YerlesimAyrinti.push({VagonAdi: vagonlar[i].Ad, KisiSayisi: Math.round(tempKisiSayisi)})
                 break}
 
             else if (maxPeopleForEachVagon > 0 && tempKisiSayisi > maxPeopleForEachVagon){
+                cevap.RezervasyonYapilabilir = true
                 cevap.YerlesimAyrinti.push({VagonAdi: vagonlar[i].Ad, KisiSayisi: Math.round(maxPeopleForEachVagon)})
                 tempKisiSayisi -= maxPeopleForEachVagon}            
         }
